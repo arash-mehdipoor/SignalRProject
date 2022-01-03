@@ -1,14 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SignalRProject.Hubs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SignalRProject.Interfaces;
+using SignalRProject.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace SignalRProject
 {
@@ -26,6 +24,9 @@ namespace SignalRProject
         {
             services.AddControllersWithViews();
             services.AddSignalR();
+            string conectionString = "Data Source=.;Initial Catalog=SignalRDB;Integrated Security=True;";
+            services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(conectionString));
+            services.AddScoped<IChatRoomService, ChatRoomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
