@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SignalRProject.Interfaces
+namespace SignalRProject.Entities
 {
     public class ChatRoom
     {

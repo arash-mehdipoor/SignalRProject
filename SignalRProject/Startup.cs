@@ -7,6 +7,7 @@ using SignalRProject.Hubs;
 using SignalRProject.Interfaces;
 using SignalRProject.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SignalRProject
 {
@@ -27,6 +28,14 @@ namespace SignalRProject
             string conectionString = "Data Source=.;Initial Catalog=SignalRDB;Integrated Security=True;";
             services.AddDbContext<DatabaseContext>(option => option.UseSqlServer(conectionString));
             services.AddScoped<IChatRoomService, ChatRoomService>();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Home/Login";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +55,7 @@ namespace SignalRProject
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

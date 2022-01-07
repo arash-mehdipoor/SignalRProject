@@ -1,4 +1,5 @@
 ﻿using SignalRProject.Context;
+using SignalRProject.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalRProject.Interfaces
 {
-    
+
     public interface IChatRoomService
     {
         Task<Guid> CreateChatRoom(string connectionId);

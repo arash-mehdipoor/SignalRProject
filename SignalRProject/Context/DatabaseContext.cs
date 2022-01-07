@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SignalRProject.Interfaces;
+using SignalRProject.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +13,6 @@ namespace SignalRProject.Context
         {
         }
         public DbSet<ChatRoom> ChatRooms { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
